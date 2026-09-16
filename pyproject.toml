@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fly-p1-mal"
+version = "0.1.0"
+description = "Hop-1 GABA from annotated mAL onto 88 pC1 coexpress cells: does the folded cVA term cross W_crit and make HD-on / cVA-off N&S?"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Martial Systems LLC" }]
+dependencies = ["numpy>=1.26"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+extract = ["pandas>=2.0", "pyarrow>=14"]
+
+[project.scripts]
+fly-p1-mal = "fly_p1_mal.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]

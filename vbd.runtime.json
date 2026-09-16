@@ -1,0 +1,28 @@
+{
+  "runtime_checks": [
+    {
+      "id": "unit-tests",
+      "argv": [".venv/bin/python", "-m", "pytest", "tests/", "-q"],
+      "timeout_s": 180,
+      "paths": [
+        "src/**",
+        "tests/**",
+        "malforge/**",
+        "data/**",
+        "logs/**",
+        "README.md",
+        "AGENTS.md",
+        "NEXT.md",
+        "description.txt",
+        "pyproject.toml",
+        "vbd.runtime.json"
+      ]
+    },
+    {
+      "id": "malforge-sanity",
+      "argv": [".venv/bin/python", "malforge/scripts/sanity_malforge.py"],
+      "timeout_s": 60,
+      "paths": ["malforge/**"]
+    }
+  ]
+}

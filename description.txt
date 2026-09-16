@@ -1,0 +1,1 @@
+Does hop-1 GABA from annotated mAL onto the same 88 cells pull the cVA term through W_crit ≈ -1.54, and only then does HD-on / cVA-off become necessary and sufficient? Yes. mAL GABA -8810 folded with DA1 +62 gives W=-25.9842, through parent W_crit=-1.539. hd_on_cva_off_ns=true.
