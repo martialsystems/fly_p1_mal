@@ -9,26 +9,16 @@ from fly_p1_mal.cli import main
 REPO = Path(__file__).resolve().parents[1]
 
 
-DRIVE = (
-    "Does cVA (DA1 or LH intermediates) synapse onto the mAL IDs "
-    "that make the -8810?"
-)
-
-
 def test_next_closes_this_tree() -> None:
     text = (REPO / "NEXT.md").read_text(encoding="utf-8")
     assert text.startswith("# Next question\n")
-    body = text.split("\n", 1)[1].lstrip()
-    assert body.startswith(DRIVE)
     assert "e16856c" in text
     assert "41437dc" in text
     assert "Do not touch the logs" in text
-    assert "Closed as a conditional" in text
-    assert "only that count" in text
-    assert "No Icarus rows until then" in text
-    assert "Not hop-3" in text
-    assert "unfreeze" in text
-    assert "45aa064" in text
+    assert "fly_mal_drive" in text
+    assert "DA1_PN -> type-LH -> mAL_GABA_pre" in text
+    assert "No Icarus rows" in text
+    assert "Do not hop-3" in text
     assert "What it is not" not in text
     assert "—" not in text
     assert scan_text(text) == []
