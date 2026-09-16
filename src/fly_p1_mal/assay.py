@@ -263,10 +263,9 @@ def run_assay(cfg: AssayConfig) -> dict:
             "become necessary and sufficient?"
         ),
         "honesty": (
-            "Hop-1 GABA from type-mAL onto the same 88 pC1 coexpress cells is folded "
-            "into W[P1, DA1] on the fly_p1_sign @45aa064 LC10a scale (606 to 1.8). "
-            "Motor rows are schema. DA1_lPN hop-1 onto annotated mAL is 96 ACh onto "
-            "2 mALB1 cells; hop-1 onto mAL_m* is 0. Parent W_crit = -1.539."
+            "Hop-1 mAL GABA onto these 88 cells is large enough to pass W_crit if "
+            "it is assigned to cVA. DA1 hop-1 onto mAL_m* is 0; onto two mALB1 "
+            "cells it is 96 ACh. hd_on_cva_off_ns is the fold. Parent W_crit = -1.539."
         ),
         "n_agents": 2,
         "n_live_w": 1,

@@ -23,7 +23,9 @@ def test_folded_mal_battery_runs() -> None:
     assert cva["through_wcrit"] is True
     ns = result["hd_cva_ns"]
     assert ns["present"] is True
-    # Folded mAL GABA is past parent W_crit; cVA on the row must reject.
+    # Fold succeeding: a -26 cVA slot rejects. Public finding is the hop-1 table.
     assert rows["3b"]["p1_mean"] < 0.0
     assert ns["cva_rejects"] is True
     assert ns["hd_on_cva_off_ns"] is True
+    assert result["cva_term"]["da1_to_mal_m"]["weight"] == 0
+    assert result["cva_term"]["da1_to_mal"]["weight"] == 96

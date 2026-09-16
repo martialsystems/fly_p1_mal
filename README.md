@@ -2,26 +2,32 @@
 
 Does hop-1 GABA from annotated mAL onto the same 88 cells pull the cVA term through W_crit ≈ -1.54, and only then does HD-on / cVA-off become necessary and sufficient?
 
-Yes. Hop-1 GABA from type-mAL onto the 88 pC1 coexpress cells is -8810. Folded with hop-1 DA1 +62 on the parent LC10a scale (606 to 1.8), `W[P1, DA1] = -25.9842`, which is through parent `W_crit = -1.539`. Then HD-on / cVA-off is necessary and sufficient. `hd_on_cva_off_ns` is true. Seed 1, 2,000 steps, `logs/p1_mal_s1.json`.
+Hop-1 mAL GABA onto these 88 cells is large enough to pass W_crit if it is assigned to cVA. DA1 hop-1 onto mAL_m* is 0; onto two mALB1 cells it is 96 ACh. Extract `@e16856c`, `logs/p1_mal_s1.json`.
 
-Parent [fly_p1_sign](https://github.com/martialsystems/fly_p1_sign) `@45aa064` put MaleCNS hop-1 signed counts on this row and cVA could not reject (`W[P1, DA1] = +0.1842`). Grandparent [fly_icarus](https://github.com/martialsystems/fly_icarus) `@2cf5fd6` used a published-sign -1.8 DA1 brake. This tree keeps the same 88 cells and the same battery. It folds annotated mAL GABA into the cVA slot.
+Parent [fly_p1_sign](https://github.com/martialsystems/fly_p1_sign) `@45aa064`: hop-1 DA1 onto the same 88 is +62 ACh (scaled W=0.1842). Grandparent [fly_icarus](https://github.com/martialsystems/fly_icarus) `@2cf5fd6`: published-sign `W[P1, DA1] = -1.8`. This tree measures hop-1 onto those 88 cells, then assigns mAL GABA to the cVA slot by hand.
 
-Hop-1 onto 88 pC1 coexpress cells, parent LC10a scale:
+Hop-1 onto 88 pC1 coexpress cells, parent LC10a scale (606 to 1.8):
 
-| pre class | signed weight | scaled W onto P1 |
-|-----------|--------------:|-----------------:|
-| LC10a | +606 | 1.8 |
-| DA1_lPN/vPN | +62 (acetylcholine) | 0.1842 before fold |
-| mAL GABA | -8810 | folded into DA1 |
-| cVA term (DA1 + mAL GABA) | -8748 | -25.9842 |
-| VA1v PNs (HD path) | -3 | -0.0089 |
-| putative_ppk23 | 0 | 0 |
+| pre class | signed weight | note |
+|-----------|--------------:|------|
+| LC10a | +606 | scale setter |
+| DA1_lPN/vPN | +62 | acetylcholine |
+| mAL GABA | -8810 | giant term on this row |
+| VA1v PNs (HD path) | -3 | |
+| putative_ppk23 | 0 | |
 
-DA1_lPN hop-1 onto annotated mAL is 96 ACh onto 2 mALB1 cells. Hop-1 onto `mAL_m*` is 0. The fold is the compressed object: mAL GABA rides the cVA channel. n_mAL = 159. n_P1 = 88.
+Drive onto the mAL cells that account for the -8810:
 
-## Locked metrics
+| hop-1 | signed | n_post |
+|-------|-------:|-------:|
+| DA1 PN → mAL_m* | 0 | 0 |
+| DA1 PN → annotated mAL | +96 ACh | 2 mALB1 |
 
-Copied from `logs/p1_mal_s1.json`.
+Assigned to cVA, the folded term is `W[P1, DA1] = -25.9842` versus parent `W_crit = -1.539`. That is a channel assignment on this row. n_mAL = 159. n_P1 = 88.
+
+## Fold on the same battery
+
+Copied from `logs/p1_mal_s1.json`. `hd_on_cva_off_ns` is true because the cVA slot was given -25.9842. 3c equals 3d: ppk23 hop-1 is 0.
 
 | condition | P1 mean | DA1 term | LC10a term | song |
 |-----------|--------:|---------:|-----------:|-----:|
@@ -36,11 +42,9 @@ Copied from `logs/p1_mal_s1.json`.
 | 3d pin female cuticle | -0.9986 | -21.7797 | 1.2902 | 0.0005 |
 | copresent HD+cVA | -0.9987 | -10.3817 | 0.784 | 0.0 |
 
-3 tracks 1 (`d31 = 0.0`) because both have cVA off. 3b tracks 2: cVA is on and the folded term rejects. `through_wcrit` is true. `hd_on_cva_off_ns` is true. 3c equals 3d: ppk23 hop-1 is still 0. Seeds 2 and 3 match.
+DA1 dose on the 3d pin (`logs/p1_da1_dose_s1.json`): default `-25.9842`, P1 = -0.9986. Crossing remains `W[P1, DA1] = -1.539`. Seeds 2 and 3 match.
 
-DA1 dose on the 3d pin (`logs/p1_da1_dose_s1.json`): extract default `W[P1, DA1] = -25.9842`, P1 = -0.9986. P1 crosses zero at `W[P1, DA1] = -1.539`, the same crossing as `@45aa064`. The folded default sits on the reject side of that crossing.
-
-`--n 1000`, `--unfreeze`, and `--female-brain-icarus` stay stubbed. Hop-3 is unasked.
+`--n 1000`, `--unfreeze`, and `--female-brain-icarus` stay stubbed. This tree stays closed as a conditional: mAL can be the brake if it rides cVA. Do not reopen the Icarus battery here.
 
 Female template count: FlyWire 139,255. Male template count: MaleCNS 166,691.
 
@@ -58,6 +62,8 @@ Rebuild W from feathers (optional):
 .venv/bin/python scripts/extract_p1_weights.py
 ```
 
+Do not overwrite `logs/p1_mal_s1.json`.
+
 ## Files
 
 | Path | Role |
@@ -69,7 +75,7 @@ Rebuild W from feathers (optional):
 | `logs/p1_da1_dose_s1.json` | 3d-pin DA1 sweep |
 | `malforge/` | GraphForge pin |
 | `AGENTS.md` | Project rules and VBD |
-| `NEXT.md` | Closed. DA1 drive onto mAL_m* unasked. |
+| `NEXT.md` | Drive check. This tree closed. |
 | `THIRD_PARTY.md` | Connectome attribution |
 
 [Fly research index](https://gist.github.com/martialsystems/12835f747d6360781f3cc7f91f243178)

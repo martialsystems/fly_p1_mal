@@ -13,6 +13,11 @@ QUESTION = (
     "cVA term through W_crit ≈ -1.54, and only then does HD-on / cVA-off "
     "become necessary and sufficient?"
 )
+ALLOWED = (
+    "Hop-1 mAL GABA onto these 88 cells is large enough to pass W_crit "
+    "if it is assigned to cVA. DA1 hop-1 onto mAL_m* is 0; onto two "
+    "mALB1 cells it is 96 ACh."
+)
 
 
 def test_readme_question_first() -> None:
@@ -20,6 +25,8 @@ def test_readme_question_first() -> None:
     assert text.startswith("# fly_p1_mal\n")
     body = text.split("\n", 1)[1].lstrip()
     assert body.startswith(QUESTION)
+    finding = body[len(QUESTION) :].lstrip()
+    assert finding.startswith(ALLOWED)
     assert "What it is not" not in text
     assert "—" not in text
     assert scan_text(text) == []
@@ -29,9 +36,11 @@ def test_readme_question_first() -> None:
     assert "malforge/" in text
     assert "https://gist.github.com/martialsystems/12835f747d6360781f3cc7f91f243178" in text
     assert "@45aa064" in text
+    assert "@e16856c" in text
     assert "12835f747d6360781f3cc7f91f243178" in text
     desc = (REPO / "description.txt").read_text(encoding="utf-8")
     assert QUESTION in desc
+    assert ALLOWED in desc
     assert "—" not in desc
     assert scan_text(desc) == []
 
@@ -43,6 +52,9 @@ def test_lock_numbers_in_readme() -> None:
     ns = data["hd_cva_ns"]
     assert ns["hd_on_cva_off_ns"] is True
     assert data["cva_term"]["through_wcrit"] is True
+    assert data["cva_term"]["da1_to_mal_m"]["weight"] == 0
+    assert data["cva_term"]["da1_to_mal"]["weight"] == 96
+    assert ALLOWED in text
     rows = {str(r["condition"]): r for r in data["conditions"]}
     assert str(rows["3"]["p1_mean"]) in text
     assert str(rows["3b"]["p1_mean"]) in text
