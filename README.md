@@ -48,6 +48,20 @@ DA1 dose on the 3d pin (`logs/p1_da1_dose_s1.json`): default `-25.9842`, P1 = -0
 
 Female template count: FlyWire 139,255. Male template count: MaleCNS 166,691.
 
+## Methods card
+
+Copied from `METHODS.yaml`.
+
+| Field | Value |
+|-------|-------|
+| Object | connectome measurement |
+| Status | Closed |
+| Falsifier | hop-1 mAL GABA onto the 88 too small to pass W_crit if assigned to cVA |
+| n / seeds | 1 extract |
+| Science lock | `e16856c` |
+| Pre-specified | false |
+
+
 ## How to run
 
 ```
@@ -74,6 +88,8 @@ Do not overwrite `logs/p1_mal_s1.json`.
 | `logs/p1_mal_s1.json` | Locked seed-1 battery |
 | `logs/p1_da1_dose_s1.json` | 3d-pin DA1 sweep |
 | `malforge/` | GraphForge pin |
+| `METHODS.yaml` | Methods card |
+| `CITATION.cff` | Citation file; DOI empty until a deposit exists |
 | `AGENTS.md` | Project rules and VBD |
 | `NEXT.md` | Drive check. This tree closed. |
 | `THIRD_PARTY.md` | Connectome attribution |

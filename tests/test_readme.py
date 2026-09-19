@@ -66,3 +66,14 @@ def test_lock_numbers_in_readme() -> None:
     assert str(dose["default_w_p1_da1"]) in text
     footer = "[Fly research index](https://gist.github.com/martialsystems/12835f747d6360781f3cc7f91f243178)"
     assert footer in text
+
+
+def test_methods_card_and_citation() -> None:
+    methods = (REPO / "METHODS.yaml").read_text(encoding="utf-8")
+    assert "science_lock:" in methods
+    assert "pre_specified: false" in methods
+    assert "—" not in methods
+    assert "What it is not" not in methods
+    cite = (REPO / "CITATION.cff").read_text(encoding="utf-8")
+    assert "cff-version: 1.2.0" in cite
+    assert "Martial Systems LLC" in cite

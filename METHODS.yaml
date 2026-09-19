@@ -1,0 +1,16 @@
+question: Does hop-1 GABA from annotated mAL onto the same 88 cells pull the cVA term through W_crit ≈ -1.54, and only then does HD-on / cVA-off become necessary and sufficient?
+falsifier: hop-1 mAL GABA onto the 88 too small to pass W_crit if assigned to cVA
+object: connectome measurement
+status: Closed
+system: 88 pC1-coexpress; type startswith mAL; consensus_nt gaba
+data_version: "MaleCNS v1.0; dataset male-cns:v1.0 significant-only"
+neuron_table: class counts in data/templates/extract.json
+dynamics: fold onto parent LC10a scale; not a live LIF
+rng: extract lock
+n_seeds: 1
+n_meaning: 1 extract
+locked_metric: "mAL GABA -8810; DA1 hop-1 onto mAL_m* is 0; science_lock e16856c"
+pre_specified: false
+science_lock: e16856c
+parent_sha: "45aa064"
+reduction: "N&S is true on the folded row because the slot was given -25.9842"
